@@ -1,0 +1,23 @@
+Source: fastpotify
+Section: sound
+Priority: optional
+Maintainer: Dario Griffo <dariogriffo@gmail.com>
+Homepage: https://github.com/dariogriffo/fastpotify-debian
+Package: fastpotify
+Version: FASTPOTIFY_VERSION-BUILD_VERSION~DIST
+Architecture: SUPPORTED_ARCHITECTURES
+PACKAGE_DEPENDS
+PACKAGE_RECOMMENDS
+Description: fast, native Spotify client for the desktop
+ Fastpotify is a lightweight Spotify client written in Rust with egui,
+ playing music through librespot. It starts in well under a second and stays
+ small while it runs; there is no browser engine anywhere in the process.
+ .
+ It is a Spotify Connect device in its own right, plays music on this
+ computer, and controls playback on every other device on the account. The
+ whole library is there: playlists, Liked Songs, saved albums, followed
+ artists, podcasts and episodes, with search, artist, album and playlist
+ pages, a queue, lyrics, media keys, and a tray icon that keeps the music
+ playing when the window is closed.
+ .
+ Local playback needs a Spotify Premium account.

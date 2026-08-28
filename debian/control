@@ -1,0 +1,29 @@
+Source: fastpotify
+Section: sound
+Priority: optional
+Maintainer: Dario Griffo <dariogriffo@gmail.com>
+Build-Depends: debhelper-compat (= 13), wget, ca-certificates
+Standards-Version: 4.6.2
+Homepage: https://github.com/crmne/fastpotify
+Rules-Requires-Root: no
+
+Package: fastpotify
+Architecture: amd64 arm64
+Depends: ${misc:Depends}, libc6 (>= 2.39), libgcc-s1, libasound2t64 | libasound2,
+ libpulse0, libgl1, libegl1, libx11-6, libx11-xcb1, libxcursor1, libxi6,
+ libxrender1, libxkbcommon0, libxkbcommon-x11-0, libwayland-client0,
+ libwayland-egl1
+Recommends: fonts-noto-cjk, fonts-noto-core
+Description: fast, native Spotify client for the desktop
+ Fastpotify is a lightweight Spotify client written in Rust with egui,
+ playing music through librespot. It starts in well under a second and stays
+ small while it runs; there is no browser engine anywhere in the process.
+ .
+ It is a Spotify Connect device in its own right, plays music on this
+ computer, and controls playback on every other device on the account. The
+ whole library is there: playlists, Liked Songs, saved albums, followed
+ artists, podcasts and episodes, with search, artist, album and playlist
+ pages, a queue, lyrics, media keys, and a tray icon that keeps the music
+ playing when the window is closed.
+ .
+ Local playback needs a Spotify Premium account.

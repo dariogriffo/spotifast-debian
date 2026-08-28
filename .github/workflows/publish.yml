@@ -1,0 +1,35 @@
+name: Publish draft release
+
+on:
+  workflow_run:
+    workflows: ["Build fastpotify for Debian"]
+    types: [completed]
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    name: Publish the draft release produced by a green build
+    if: github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+
+          # The build creates the release as a draft; the VPS ingest only ever
+          # reads releases/latest, which skips drafts. Publish the newest draft
+          # so auto_publish.sh can pick the version up on its next tick.
+          tag=$(gh api "repos/${GITHUB_REPOSITORY}/releases" \
+            -q '[.[] | select(.draft == true)] | first | .tag_name // empty')
+          if [ -z "$tag" ]; then
+            echo "No draft release to publish."
+            exit 0
+          fi
+
+          echo "Publishing draft release ${tag}."
+          gh release edit "$tag" --draft=false --latest
