@@ -1,4 +1,4 @@
-name: Check for new fastpotify release
+name: Check for new spotifast release
 
 on:
   schedule:
@@ -26,8 +26,8 @@ jobs:
         run: |
           set -euo pipefail
 
-          UPSTREAM_REPO="crmne/fastpotify"
-          VERSION_INPUT="fastpotify_version"
+          UPSTREAM_REPO="crmne/spotifast"
+          VERSION_INPUT="spotifast_version"
           TAG_PREFIX="v"
 
           # Latest stable upstream release tag, with the project's tag prefix stripped

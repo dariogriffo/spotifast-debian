@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-FASTPOTIFY_VERSION=$1
+SPOTIFAST_VERSION=$1
 BUILD_VERSION=$2
 ARCH=${3:-amd64}  # Default to amd64 if no architecture specified
 

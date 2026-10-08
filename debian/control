@@ -1,21 +1,24 @@
-Source: fastpotify
+Source: spotifast
 Section: sound
 Priority: optional
 Maintainer: Dario Griffo <dariogriffo@gmail.com>
 Build-Depends: debhelper-compat (= 13), wget, ca-certificates
 Standards-Version: 4.6.2
-Homepage: https://github.com/crmne/fastpotify
+Homepage: https://github.com/crmne/spotifast
 Rules-Requires-Root: no
 
-Package: fastpotify
+Package: spotifast
 Architecture: amd64 arm64
 Depends: ${misc:Depends}, libc6 (>= 2.39), libgcc-s1, libasound2t64 | libasound2,
  libpulse0, libgl1, libegl1, libx11-6, libx11-xcb1, libxcursor1, libxi6,
  libxrender1, libxkbcommon0, libxkbcommon-x11-0, libwayland-client0,
  libwayland-egl1
 Recommends: fonts-noto-cjk, fonts-noto-core
+Provides: fastpotify
+Replaces: fastpotify
+Breaks: fastpotify
 Description: fast, native Spotify client for the desktop
- Fastpotify is a lightweight Spotify client written in Rust with egui,
+ Spotifast is a lightweight Spotify client written in Rust with egui,
  playing music through librespot. It starts in well under a second and stays
  small while it runs; there is no browser engine anywhere in the process.
  .

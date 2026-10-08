@@ -1,25 +1,25 @@
 #!/bin/bash
 set -euo pipefail
 
-FASTPOTIFY_VERSION=$1
+SPOTIFAST_VERSION=$1
 BUILD_VERSION=$2
 
-if [ -z "$FASTPOTIFY_VERSION" ] || [ -z "$BUILD_VERSION" ]; then
-    echo "Usage: $0 <fastpotify_version> <build_version>"
+if [ -z "$SPOTIFAST_VERSION" ] || [ -z "$BUILD_VERSION" ]; then
+    echo "Usage: $0 <spotifast_version> <build_version>"
     echo "Example: $0 0.2.0 1"
     exit 1
 fi
 
-PACKAGE_NAME="fastpotify"
-ORIG_TARBALL="${PACKAGE_NAME}_${FASTPOTIFY_VERSION}.orig.tar.gz"
-BUILD_DIR="${PACKAGE_NAME}-${FASTPOTIFY_VERSION}"
+PACKAGE_NAME="spotifast"
+ORIG_TARBALL="${PACKAGE_NAME}_${SPOTIFAST_VERSION}.orig.tar.gz"
+BUILD_DIR="${PACKAGE_NAME}-${SPOTIFAST_VERSION}"
 
-echo "Creating Debian/Ubuntu source packages for fastpotify ${FASTPOTIFY_VERSION}-${BUILD_VERSION}..."
+echo "Creating Debian/Ubuntu source packages for spotifast ${SPOTIFAST_VERSION}-${BUILD_VERSION}..."
 
 # Download upstream source tarball (shared .orig.tar.gz across all distributions)
 if [ ! -f "$ORIG_TARBALL" ]; then
     echo "Downloading upstream source from GitHub..."
-    wget -q "https://github.com/crmne/fastpotify/archive/refs/tags/v${FASTPOTIFY_VERSION}.tar.gz" -O "$ORIG_TARBALL"
+    wget -q "https://github.com/crmne/spotifast/archive/refs/tags/v${SPOTIFAST_VERSION}.tar.gz" -O "$ORIG_TARBALL"
     echo "  Downloaded $ORIG_TARBALL"
 else
     echo "  Using existing $ORIG_TARBALL"
@@ -27,23 +27,23 @@ fi
 
 build_source_package() {
     local dist=$1
-    local FULL_VERSION="${FASTPOTIFY_VERSION}-${BUILD_VERSION}~${dist}"
+    local FULL_VERSION="${SPOTIFAST_VERSION}-${BUILD_VERSION}~${dist}"
 
     echo "  Building source package for ${dist} (${FULL_VERSION})..."
 
     # Clean and recreate build directory from orig tarball
     rm -rf "$BUILD_DIR"
     tar -xf "$ORIG_TARBALL"
-    # GitHub archives extract as fastpotify-0.x.y/ which matches our BUILD_DIR
+    # GitHub archives extract as spotifast-0.x.y/ which matches our BUILD_DIR
 
     # Copy Debian packaging directory
     cp -r debian "$BUILD_DIR/"
 
     # Generate distribution-specific changelog (overwrites placeholder)
     cat > "$BUILD_DIR/debian/changelog" << CHANGELOG
-fastpotify (${FULL_VERSION}) ${dist}; urgency=medium
+spotifast (${FULL_VERSION}) ${dist}; urgency=medium
 
-  * New upstream release ${FASTPOTIFY_VERSION}.
+  * New upstream release ${SPOTIFAST_VERSION}.
 
  -- Dario Griffo <dariogriffo@gmail.com>  $(date -R)
 CHANGELOG

@@ -1,10 +1,10 @@
-name: Build fastpotify for Debian
+name: Build spotifast for Debian
 
 on:
   workflow_dispatch:
     inputs:
-      fastpotify_version:
-        description: The version of fastpotify to build.
+      spotifast_version:
+        description: The version of spotifast to build.
         type: string
         required: true
       build_version:
@@ -24,54 +24,54 @@ permissions:
   contents: write
 
 jobs:
-  build-fastpotify:
+  build-spotifast:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout fastpotify-debian
+      - name: Checkout spotifast-debian
         uses: actions/checkout@v4
 
       - name: Validate upstream license permits paid distribution
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: ./validate_license.sh ${{ inputs.fastpotify_version }}
+        run: ./validate_license.sh ${{ inputs.spotifast_version }}
 
-      - name: Build fastpotify
-        run: ./build.sh ${{ inputs.fastpotify_version }} ${{ inputs.build_version }} ${{ inputs.architecture }}
+      - name: Build spotifast
+        run: ./build.sh ${{ inputs.spotifast_version }} ${{ inputs.build_version }} ${{ inputs.architecture }}
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: artifact
-          path: fastpotify_*.deb
+          path: spotifast_*.deb
 
   build-src:
     name: Build Source Packages
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout fastpotify-debian
+      - name: Checkout spotifast-debian
         uses: actions/checkout@v4
 
       - name: Install build dependencies
         run: sudo apt-get update && sudo apt-get install -y --no-install-recommends dpkg-dev devscripts wget ca-certificates
 
       - name: Build source packages
-        run: ./build_src.sh ${{ inputs.fastpotify_version }} ${{ inputs.build_version }}
+        run: ./build_src.sh ${{ inputs.spotifast_version }} ${{ inputs.build_version }}
 
       - name: Upload source artifacts
         uses: actions/upload-artifact@v4
         with:
           name: source-artifact
           path: |
-            fastpotify_*.dsc
-            fastpotify_*.orig.tar.gz
-            fastpotify_*.debian.tar.xz
+            spotifast_*.dsc
+            spotifast_*.orig.tar.gz
+            spotifast_*.debian.tar.xz
 
-  release-fastpotify:
-    name: Release fastpotify for Debian
+  release-spotifast:
+    name: Release spotifast for Debian
     if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    needs: [build-fastpotify, build-src]
+    needs: [build-spotifast, build-src]
     steps:
       - name: Download All Artifacts
         uses: actions/download-artifact@v4
@@ -88,10 +88,10 @@ jobs:
         with:
           draft: false
           files: |
-            fastpotify_*.deb
-            fastpotify_*.dsc
-            fastpotify_*.orig.tar.gz
-            fastpotify_*.debian.tar.xz
-          name: ${{ inputs.fastpotify_version }}+${{ inputs.build_version }}
-          tag_name: ${{ inputs.fastpotify_version }}+${{ inputs.build_version }}
+            spotifast_*.deb
+            spotifast_*.dsc
+            spotifast_*.orig.tar.gz
+            spotifast_*.debian.tar.xz
+          name: ${{ inputs.spotifast_version }}+${{ inputs.build_version }}
+          tag_name: ${{ inputs.spotifast_version }}+${{ inputs.build_version }}
           fail_on_unmatched_files: true

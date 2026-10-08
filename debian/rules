@@ -1,7 +1,7 @@
 #!/usr/bin/make -f
 DEB_HOST_ARCH ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
 PKG_VERSION := $(shell dpkg-parsechangelog -S Version | sed 's/[-~].*//')
-UPSTREAM := https://github.com/crmne/fastpotify/releases/download/v$(PKG_VERSION)
+UPSTREAM := https://github.com/crmne/spotifast/releases/download/v$(PKG_VERSION)
 
 %:
 	dh $@
@@ -17,22 +17,22 @@ override_dh_auto_build:
 		arm64) TRIPLE="aarch64-unknown-linux-gnu" ;; \
 		*) echo "Unsupported architecture: $(DEB_HOST_ARCH)"; exit 1 ;; \
 	esac; \
-	ASSET="fastpotify-v$(PKG_VERSION)-$$TRIPLE"; \
+	ASSET="spotifast-v$(PKG_VERSION)-$$TRIPLE"; \
 	echo "Downloading $$ASSET for $(PKG_VERSION)..."; \
-	wget -q "$(UPSTREAM)/$$ASSET.tar.gz" -O fastpotify.tar.gz; \
+	wget -q "$(UPSTREAM)/$$ASSET.tar.gz" -O spotifast.tar.gz; \
 	mkdir -p dist; \
-	tar -xf fastpotify.tar.gz -C dist --strip-components=1; \
-	rm -f fastpotify.tar.gz
+	tar -xf spotifast.tar.gz -C dist --strip-components=1; \
+	rm -f spotifast.tar.gz
 
 override_dh_auto_install:
-	install -D -m 755 dist/fastpotify debian/fastpotify/usr/bin/fastpotify
-	install -D -m 644 dist/packaging/applications/fastpotify.desktop debian/fastpotify/usr/share/applications/fastpotify.desktop
-	install -D -m 644 dist/packaging/icons/fastpotify.svg debian/fastpotify/usr/share/icons/hicolor/scalable/apps/fastpotify.svg
+	install -D -m 755 dist/spotifast debian/spotifast/usr/bin/spotifast
+	install -D -m 644 dist/packaging/applications/spotifast.desktop debian/spotifast/usr/share/applications/spotifast.desktop
+	install -D -m 644 dist/packaging/icons/spotifast.svg debian/spotifast/usr/share/icons/hicolor/scalable/apps/spotifast.svg
 
 override_dh_auto_test:
 
 override_dh_auto_clean:
-	rm -rf dist fastpotify.tar.gz || true
+	rm -rf dist spotifast.tar.gz || true
 
 # The binary is a prebuilt upstream release: leave it exactly as published and
 # do not try to derive library dependencies from it (they are declared by hand

@@ -8,7 +8,7 @@
 
 # Downloaded / staged upstream release artifacts
 /dist/
-/fastpotify
+/spotifast
 /usr/
 /DEBIAN/
 

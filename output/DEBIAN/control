@@ -1,15 +1,18 @@
-Source: fastpotify
+Source: spotifast
 Section: sound
 Priority: optional
 Maintainer: Dario Griffo <dariogriffo@gmail.com>
-Homepage: https://github.com/dariogriffo/fastpotify-debian
-Package: fastpotify
-Version: FASTPOTIFY_VERSION-BUILD_VERSION~DIST
+Homepage: https://github.com/dariogriffo/spotifast-debian
+Package: spotifast
+Version: SPOTIFAST_VERSION-BUILD_VERSION~DIST
 Architecture: SUPPORTED_ARCHITECTURES
+Provides: fastpotify
+Replaces: fastpotify
+Breaks: fastpotify
 PACKAGE_DEPENDS
 PACKAGE_RECOMMENDS
 Description: fast, native Spotify client for the desktop
- Fastpotify is a lightweight Spotify client written in Rust with egui,
+ Spotifast is a lightweight Spotify client written in Rust with egui,
  playing music through librespot. It starts in well under a second and stays
  small while it runs; there is no browser engine anywhere in the process.
  .

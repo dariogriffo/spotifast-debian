@@ -1,4 +1,4 @@
-# Fastpotify
+# Spotifast
 
 **Spotify, native and fast.** A lightweight Spotify client written in Rust with
 [egui](https://github.com/emilk/egui), playing music through
@@ -6,19 +6,19 @@
 macOS, and Windows, starts in well under a second, and stays small while it
 runs. There is no browser engine anywhere in the process.
 
-Fastpotify follows in the footsteps of
+Spotifast follows in the footsteps of
 [Omarchy Spotify](https://github.com/stappmus/Omarchy-Spotify) and
 [spotify-tui](https://github.com/Rigellute/spotify-tui): the familiar Spotify
 layout, the whole library, and a Spotify Connect receiver on your computer,
 as one ordinary desktop application rather than a shell plugin.
 
-![Fastpotify showing a playlist, with the queue open and a track playing on a remote speaker](docs/screenshot.png)
+![Spotifast showing a playlist, with the queue open and a track playing on a remote speaker](docs/screenshot.png)
 
-**Documentation:** [fastpotify.rocks](https://fastpotify.rocks/): what it is, getting started, everyday use, and how it connects to Spotify.
+**Documentation:** [spotifast.rocks](https://spotifast.rocks/): what it is, getting started, everyday use, and how it connects to Spotify.
 
 ## What it does
 
-- **Plays music on this computer.** Fastpotify is a Spotify Connect device.
+- **Plays music on this computer.** Spotifast is a Spotify Connect device.
   Pick it from your phone, or press play here. Gapless, up to 320 kbps, with
   optional volume normalisation and an on-disk audio cache.
 - **Controls every other device.** Move playback to a speaker, a phone, or
@@ -26,7 +26,7 @@ as one ordinary desktop application rather than a shell plugin.
   pause, skip, seek, shuffle, repeat, volume.
 - **Finds speakers on your network.** A librespot, spotifyd, or hardware
   receiver waiting on the LAN is invisible to Spotify's API until it has an
-  account. Fastpotify discovers those over mDNS and connects them for you,
+  account. Spotifast discovers those over mDNS and connects them for you,
   after which they behave like any other Spotify Connect device.
 - **Your whole library.** Playlists, Liked Songs, saved albums, followed
   artists, podcasts, and saved episodes, filterable in the sidebar and as
@@ -59,21 +59,21 @@ as one ordinary desktop application rather than a shell plugin.
 - **One instance.** Launching it again surfaces the window that is already
   open instead of starting a rival copy, on every platform.
 - **Desktop integration.** MPRIS on Linux, so media keys, the shell, and
-  `playerctl` see Fastpotify like any other player.
+  `playerctl` see Spotifast like any other player.
 
 ## Install
 
-On Arch Linux, Fastpotify is in the AUR:
+On Arch Linux, Spotifast is in the AUR:
 
 ```bash
-yay -S fastpotify          # the released build
-yay -S fastpotify-git      # built from the latest commit
+yay -S spotifast          # the released build
+yay -S spotifast-git      # built from the latest commit
 ```
 
 On macOS, with [Homebrew](https://brew.sh):
 
 ```sh
-brew install --cask crmne/tap/fastpotify
+brew install --cask crmne/tap/spotifast
 ```
 
 Everywhere else it is a single binary. Build it with a stable Rust toolchain
@@ -108,15 +108,15 @@ listen to, for example `noto-fonts` and `noto-fonts-cjk` (Arch) or
 `fonts-noto` and `fonts-noto-cjk` (Debian or Ubuntu). A script with no face
 installed still shows as empty boxes.
 
-A desktop entry is provided in `packaging/applications/fastpotify.desktop`.
+A desktop entry is provided in `packaging/applications/spotifast.desktop`.
 
 ## Sign in
 
 Press **Sign in with Spotify**. Your browser opens Spotify's own consent
-page (Authorization Code with PKCE); Fastpotify never sees your password.
+page (Authorization Code with PKCE); Spotifast never sees your password.
 When Spotify redirects back to the app, your library, search, and control
 of other devices work immediately. The refresh token is stored in the
-platform's state directory (`~/.local/state/fastpotify` on Linux), so the
+platform's state directory (`~/.local/state/spotifast` on Linux), so the
 browser is needed once per machine.
 
 Playing music **on this computer** is one more one-time browser approval.
@@ -154,7 +154,7 @@ On macOS, `Cmd` replaces `Ctrl`.
 
 ## Settings
 
-Everything lives in one readable JSON file (`~/.config/fastpotify/settings.json`
+Everything lives in one readable JSON file (`~/.config/spotifast/settings.json`
 on Linux): the Connect device name, bitrate, normalisation, autoplay, gapless
 playback, the audio backend (PulseAudio/PipeWire or ALSA on Linux), audio
 cache size, theme, and whether pages take colour from artwork. Playback
@@ -180,7 +180,7 @@ any time without signing you out.
   Views collect `Action`s while drawing and the app applies them afterwards.
 - `src/mpris.rs`: Linux media controls on a dedicated thread.
 
-Fastpotify pins its Rust toolchain in `rust-toolchain.toml`; `cargo test`
+Spotifast pins its Rust toolchain in `rust-toolchain.toml`; `cargo test`
 covers the API models, the endpoint fallbacks, PKCE, the player state
 machine, and a headless render of every page, panel, and dialog.
 
@@ -196,11 +196,11 @@ PNG and exits, which is how the screenshot above is made.
 
 ## Acknowledgements
 
-Fastpotify stands on [librespot](https://github.com/librespot-org/librespot),
+Spotifast stands on [librespot](https://github.com/librespot-org/librespot),
 [egui](https://github.com/emilk/egui), the [Inter](https://rsms.me/inter/)
 typeface (OFL), and [Lucide](https://lucide.dev) icons (ISC).
 
-Fastpotify is an independent project and is not affiliated with Spotify.
+Spotifast is an independent project and is not affiliated with Spotify.
 Spotify is a trademark of Spotify AB.
 
 Licensed under the [MIT License](LICENSE).

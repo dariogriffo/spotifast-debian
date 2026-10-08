@@ -1,7 +1,7 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: fastpotify
-Upstream-Contact: https://github.com/crmne/fastpotify
-Source: https://github.com/crmne/fastpotify
+Upstream-Name: spotifast
+Upstream-Contact: https://github.com/crmne/spotifast
+Source: https://github.com/crmne/spotifast
 
 Files: *
 Copyright: 2026 Carmine Paolino
