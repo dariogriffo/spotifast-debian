@@ -1,4 +1,4 @@
-spotifast (FULL_VERSION) DIST; urgency=low
+spotifast (FULL_VERSION) stable; urgency=low
 
   * New upstream release.
 

@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Dario Griffo <dariogriffo@gmail.com>
 Homepage: https://github.com/dariogriffo/spotifast-debian
 Package: spotifast
-Version: SPOTIFAST_VERSION-BUILD_VERSION~DIST
+Version: SPOTIFAST_VERSION-BUILD_VERSION~griffo
 Architecture: SUPPORTED_ARCHITECTURES
 Provides: fastpotify
 Replaces: fastpotify
